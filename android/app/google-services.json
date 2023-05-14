@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "599306273253",
+    "project_id": "adil-asign-todo-a",
+    "storage_bucket": "adil-asign-todo-a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599306273253:android:f5c00962a8a99acafbef0c",
+        "android_client_info": {
+          "package_name": "com.adilayoub.assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599306273253-cp4jugq2hgpam7g9guraojht3abegend.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASVk37Um5_-3TyxN41zmI1nOlPstMhf5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599306273253-cp4jugq2hgpam7g9guraojht3abegend.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
