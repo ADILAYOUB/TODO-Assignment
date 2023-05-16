@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        //  appBar: CustomAppBar(onLogoutPressed: signUserOut),
+        //appBar: CustomAppBar(onLogoutPressed: signUserOut),
         extendBody: true,
         //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Padding(
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
         body: Center(
           child: Column(
             children: [
-              const IndicationScreen(),
+              IndicationScreen(onPressed: signUserOut),
               const Expanded(
                 child: Tasks(),
               ),
