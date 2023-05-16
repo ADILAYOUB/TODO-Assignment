@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
         body: Center(
           child: Column(
             children: [
-              IndicationScreen(),
+              const IndicationScreen(),
               const Expanded(
                 child: Tasks(),
               ),

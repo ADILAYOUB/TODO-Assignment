@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -176,7 +175,7 @@ class AddTaskScreen extends StatelessWidget {
 
         _clearAll();
       } catch (e) {
-        print('Error adding task: $e');
+        // print('Error adding task: $e');
       }
     }
   }

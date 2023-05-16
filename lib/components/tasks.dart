@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/colors.dart';
 import 'delete_task.dart';
 
 class Tasks extends StatefulWidget {

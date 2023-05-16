@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../constants/strings.dart';
 
 class IndicationScreen extends StatelessWidget {
+  const IndicationScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
