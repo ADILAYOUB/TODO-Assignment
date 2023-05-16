@@ -38,46 +38,58 @@ class _TasksState extends State<Tasks> {
 
           final taskDocs = snapshot.data!.docs;
 
-          return ListView.builder(
+          return ListView.separated(
             itemCount: taskDocs.length,
+            separatorBuilder: (context, index) => Container(
+              height: 2.0,
+              color: Colors.grey,
+            ),
             itemBuilder: (context, index) {
               final taskData = taskDocs[index].data()! as Map<String, dynamic>;
 
-              Color taskColor = AppColors.blueShadeColor;
+              IconData taskIconData = Icons.zoom_out_sharp;
               var taskTag = taskData['taskTag'];
 
               if (taskTag == 'Work') {
-                taskColor = AppColors.salmonColor;
+                taskIconData = Icons.work;
               } else if (taskTag == 'School') {
-                taskColor = AppColors.greenShadeColor;
+                taskIconData = Icons.school;
               }
 
-              return Container(
+              return SizedBox(
                 height: 100,
-                margin: const EdgeInsets.only(bottom: 15.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: AppColors.shadowColor,
-                      blurRadius: 5.0,
-                      offset: Offset(0, 5), // shadow direction: bottom right
-                    ),
-                  ],
-                ),
                 child: ListTile(
                   leading: Container(
-                    width: 20,
-                    height: 20,
+                    width: 46,
+                    height: 46,
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.grey, // Customize the border color
+                        width: 2.0, // Customize the border width
+                      ),
+                    ),
                     child: CircleAvatar(
-                      backgroundColor: taskColor,
+                      backgroundColor: Colors.transparent,
+                      child: Icon(
+                        taskIconData, // Replace with the desired icon
+                        color: Colors.blue, // Customize the icon color
+                      ),
                     ),
                   ),
-                  title: Text(taskData['taskName']),
-                  subtitle: Text(taskData['taskDesc']),
+                  title: Text(
+                    taskData['taskName'],
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    taskData['taskDesc'],
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
                   isThreeLine: true,
                   trailing: PopupMenuButton(
                     color: Colors.pink,

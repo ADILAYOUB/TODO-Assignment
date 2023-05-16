@@ -1,191 +1,167 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AddTaskAlertDialog extends StatefulWidget {
-  const AddTaskAlertDialog({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<AddTaskAlertDialog> createState() => _AddTaskAlertDialogState();
-}
-
-class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
+class AddTaskScreen extends StatelessWidget {
   final TextEditingController taskNameController = TextEditingController();
   final TextEditingController taskDescController = TextEditingController();
   final List<String> taskTags = ['Work', 'School', 'Other'];
-  late String selectedValue = '';
+
+  AddTaskScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
-    return AlertDialog(
-      scrollable: true,
-      title: const Text(
-        'New Task',
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 16, color: Colors.pinkAccent),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue.shade800,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white, size: 36.0),
+          padding: const EdgeInsets.all(10.0),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        title: const Center(
+          child: Text(
+            'Add new thing',
+            style: TextStyle(
+              fontSize: 24,
+            ),
+          ),
+        ),
       ),
-      content: SizedBox(
-        height: height * 0.35,
-        width: width,
-        child: Form(
+      backgroundColor: Colors.blue.shade800,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
-            children: <Widget>[
-              TextFormField(
-                controller: taskNameController,
-                style: const TextStyle(fontSize: 14),
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 2.0,
                   ),
-                  hintText: 'Task',
-                  hintStyle: const TextStyle(fontSize: 14),
-                  icon: const Icon(
-                    CupertinoIcons.square_list,
-                    color: Colors.pink,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(
-                      color: Colors.pink.shade400,
-                      width: 1.0,
-                    ),
+                ),
+                child: const Center(
+                  child: Icon(
+                    Icons.access_alarm,
+                    color: Colors.white,
+                    size: 80,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        offset: Offset(2, 2),
+                        blurRadius: 3,
+                      ),
+                    ],
                   ),
                 ),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 16),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      isExpanded: true,
+                      hint: const Text(
+                        'Add task tag',
+                        style: TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                      value: null,
+                      items: taskTags.map(
+                        (item) {
+                          return DropdownMenuItem<String>(
+                            alignment: AlignmentDirectional.centerStart,
+                            value: item,
+                            child: Text(
+                              item,
+                              style: const TextStyle(
+                                  fontSize: 24, color: Colors.white),
+                            ),
+                          );
+                        },
+                      ).toList(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ), // Change the text color of the selected item
+                      dropdownColor: Colors.blue
+                          .shade800, // Change the background color of the dropdown menu
+                      onChanged: (String? value) {},
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: taskNameController,
+                style: const TextStyle(fontSize: 24, color: Colors.white),
+                decoration: const InputDecoration(
+                  hintText: 'Task',
+                  hintStyle: TextStyle(fontSize: 24, color: Colors.white),
+                  contentPadding: EdgeInsets.only(bottom: 8),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
               TextFormField(
                 controller: taskDescController,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
-                style: const TextStyle(fontSize: 14),
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
-                  ),
+                style: const TextStyle(fontSize: 24, color: Colors.white),
+                decoration: const InputDecoration(
                   hintText: 'Description',
-                  hintStyle: const TextStyle(fontSize: 14),
-                  icon: const Icon(
-                    CupertinoIcons.bubble_left_bubble_right,
-                    color: Colors.pink,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(
-                      color: Colors.pink.shade400,
-                      width: 1.0,
-                    ),
+                  hintStyle: TextStyle(fontSize: 24, color: Colors.white),
+                  contentPadding: EdgeInsets.only(bottom: 8),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
               ),
-              const SizedBox(height: 15),
-              Row(
-                children: <Widget>[
-                  const Icon(CupertinoIcons.tag, color: Colors.pink),
-                  const SizedBox(width: 15.0),
-                  Expanded(
-                    child: DropdownButtonFormField2(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(
-                            color: Colors.pink.shade400,
-                            width: 1.0,
-                          ),
-                        ),
-                        isDense: true,
-                        contentPadding: const EdgeInsets.all(16),
-                      ),
-
-                      isExpanded: true,
-                      hint: const Text(
-                        'Add a task tag',
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      //     ? 'Please select the task tag' : null,
-                      items: taskTags
-                          .map(
-                            (item) => DropdownMenuItem<String>(
-                              alignment: AlignmentDirectional.centerStart,
-                              value: item,
-                              child: Text(
-                                item,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (String? value) => setState(
-                        () {
-                          if (value != null) selectedValue = value;
-                        },
-                      ),
-                    ),
-                  ),
-                ],
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  final taskName = taskNameController.text;
+                  final taskDesc = taskDescController.text;
+                  _addTasks(taskName: taskName, taskDesc: taskDesc);
+                  Navigator.of(context).pop();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.pink.shade400,
+                  minimumSize:
+                      const Size(200, 50), // Increase the size of the button
+                ),
+                child:
+                    const Text('ADD TO YOUR THING'), // Change the button text
               ),
             ],
           ),
         ),
       ),
-      actions: [
-        ElevatedButton(
-          onPressed: () {
-            Navigator.of(context, rootNavigator: true).pop();
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.grey,
-          ),
-          child: const Text('Cancel'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            final taskName = taskNameController.text;
-            final taskDesc = taskDescController.text;
-            final taskTag = selectedValue;
-            _addTasks(taskName: taskName, taskDesc: taskDesc, taskTag: taskTag);
-            Navigator.of(context, rootNavigator: true).pop();
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.pink.shade400,
-          ),
-          child: const Text('Save'),
-        ),
-      ],
     );
   }
 
-  Future<void> _addTasks(
-      {required String taskName,
-      required String taskDesc,
-      required String taskTag}) async {
+  Future<void> _addTasks({
+    required String taskName,
+    required String taskDesc,
+  }) async {
     final user = FirebaseAuth.instance.currentUser;
     final userId = user?.uid;
-
     if (userId != null) {
       final taskData = {
         'taskName': taskName,
         'taskDesc': taskDesc,
-        'taskTag': taskTag,
+        'taskTag': 'Work', // Replace with the selected task tag
         'userId': userId, // Store the user ID with the task
+        "time": Timestamp.fromDate(DateTime.now()),
       };
 
       try {
@@ -200,7 +176,7 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
 
         _clearAll();
       } catch (e) {
-        ('Error adding task: $e');
+        print('Error adding task: $e');
       }
     }
   }

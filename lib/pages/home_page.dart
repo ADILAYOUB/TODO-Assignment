@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../components/add_task_dialogue.dart';
-import '../components/appbar.dart';
+import '../components/indicator_top_screen.dart';
 import '../components/tasks.dart';
-import 'categories.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,67 +20,79 @@ class _HomePageState extends State<HomePage> {
   }
 
   final PageController pageController = PageController(initialPage: 0);
-
-  late int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: CustomAppBar(onLogoutPressed: signUserOut),
+        //  appBar: CustomAppBar(onLogoutPressed: signUserOut),
         extendBody: true,
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.pink.shade400,
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return const AddTaskAlertDialog();
-              },
-            );
-          },
-          child: const Icon(Icons.add),
-        ),
-        bottomNavigationBar: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          notchMargin: 6.0,
-          clipBehavior: Clip.antiAlias,
-          child: SizedBox(
-            height: kBottomNavigationBarHeight,
-            child: BottomNavigationBar(
-              currentIndex: _selectedIndex,
-              selectedItemColor: Colors.pink.shade400,
-              unselectedItemColor: Colors.black,
-              onTap: (index) {
-                setState(() {
-                  _selectedIndex = index;
-                  pageController.jumpToPage(index);
-                });
-              },
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.list),
-                  label: 'List',
+        //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(36.0),
+          child: FloatingActionButton(
+            backgroundColor: Colors.pink.shade400,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddTaskScreen(),
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.category),
-                  label: 'Category',
-                ),
-              ],
+              );
+            },
+            child: const Icon(
+              Icons.add,
+              size: 28,
             ),
           ),
         ),
-        body: PageView(
-          controller: pageController,
-          children: const <Widget>[
-            Center(
-              child: Tasks(),
-            ),
-            Center(
-              child: Categories(),
-            ),
-          ],
+        body: Center(
+          child: Column(
+            children: [
+              IndicationScreen(),
+              const Expanded(
+                child: Tasks(),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                height: 40,
+                color: Colors.white,
+                child: Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 16, right: 16),
+                      child: Text(
+                        'Completed',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey,
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '22',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
         ),
       ),
     );
