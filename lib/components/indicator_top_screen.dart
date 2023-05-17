@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constants/strings.dart';
+import 'datetime.dart';
 
 class IndicationScreen extends StatefulWidget {
   final void Function() onPressed;
@@ -14,6 +15,9 @@ class IndicationScreen extends StatefulWidget {
 class _IndicationScreenState extends State<IndicationScreen> {
   @override
   Widget build(BuildContext context) {
+    final currentDateTime = DateTime.now();
+    final formattedDate = formatDate(currentDateTime);
+    final formattedDateMMMDDYY = convertToDate(formattedDate);
     return Stack(
       children: [
         Image.network(
@@ -32,13 +36,13 @@ class _IndicationScreenState extends State<IndicationScreen> {
             ),
           ),
         ),
-        const Positioned(
+        Positioned(
           top: 20,
           left: 20,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Your Things',
                 style: TextStyle(
                   fontSize: 44,
@@ -46,10 +50,10 @@ class _IndicationScreenState extends State<IndicationScreen> {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 160),
+              const SizedBox(height: 160),
               Text(
-                'May 16, 2023',
-                style: TextStyle(
+                formattedDateMMMDDYY,
+                style: const TextStyle(
                   fontSize: 16,
                   color: Colors.white,
                 ),

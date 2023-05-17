@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'datetime.dart';
+import 'text_form_filed.dart';
+
 class AddTaskScreen extends StatelessWidget {
   final TextEditingController taskNameController = TextEditingController();
   final TextEditingController taskDescController = TextEditingController();
@@ -98,32 +101,14 @@ class AddTaskScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 8),
-              TextFormField(
-                controller: taskNameController,
-                style: const TextStyle(fontSize: 24, color: Colors.white),
-                decoration: const InputDecoration(
-                  hintText: 'Task',
-                  hintStyle: TextStyle(fontSize: 24, color: Colors.white),
-                  contentPadding: EdgeInsets.only(bottom: 8),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                ),
+              CustomTextFormField(
+                controller: taskDescController,
+                hintText: 'Task',
               ),
               const SizedBox(height: 8),
-              TextFormField(
+              CustomTextFormField(
                 controller: taskDescController,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                style: const TextStyle(fontSize: 24, color: Colors.white),
-                decoration: const InputDecoration(
-                  hintText: 'Description',
-                  hintStyle: TextStyle(fontSize: 24, color: Colors.white),
-                  contentPadding: EdgeInsets.only(bottom: 8),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                ),
+                hintText: 'Description',
               ),
               const SizedBox(height: 16),
               ElevatedButton(
@@ -154,13 +139,14 @@ class AddTaskScreen extends StatelessWidget {
   }) async {
     final user = FirebaseAuth.instance.currentUser;
     final userId = user?.uid;
+    final formattedDate = formatDate(DateTime.now());
     if (userId != null) {
       final taskData = {
         'taskName': taskName,
         'taskDesc': taskDesc,
         'taskTag': 'Work', // Replace with the selected task tag
         'userId': userId, // Store the user ID with the task
-        "time": Timestamp.fromDate(DateTime.now()),
+        "date": formattedDate,
       };
 
       try {
