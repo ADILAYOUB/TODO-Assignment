@@ -4,14 +4,11 @@ This is a Todo Application where users can manage their tasks. Users can registe
 
 ## Screenshots
 
-1. Login Page: [Link to Screenshot]
-2. Registration Page: [Link to Screenshot]
-3. Task List Page: [Link to Screenshot]
-4. Add Task Page: [Link to Screenshot]
-5. Edit Task Page: [Link to Screenshot]
-6. Delete Task Confirmation Page: [Link to Screenshot]
-
-
+1. Login Page: [https://github-production-user-asset-6210df.s3.amazonaws.com/101910738/239361720-896e05a3-27a4-443c-a4fb-94ec4d00e311.jpg]
+2. Registration Page: [https://github.com/ADILAYOUB/TODO-Assignment/assets/101910738/1487a86c-2ad8-499e-9f83-730d902d5a99]
+3. Task List Page: [https://github-production-user-asset-6210df.s3.amazonaws.com/101910738/239358833-349af870-6abc-4348-a116-55f5aedfa1d1.jpg]
+4. Add Task Page: [https://github-production-user-asset-6210df.s3.amazonaws.com/101910738/239358841-d224d6db-29e9-4140-a9b5-be276296072f.jpg]
+5. Edit Task Page: [https://github.com/ADILAYOUB/TODO-Assignment/assets/101910738/e3d9724c-2435-452e-8193-384a961b59bc]
 
 ## How to Run
 
