@@ -4,19 +4,14 @@ This is a Todo Application where users can manage their tasks. Users can registe
 
 ## Screenshots
 
-1. Login Page: [Link to Screenshot](https://drive.google.com/file/d/1HSNpzrgMYJcRIuFaHNTmSyTDUh3TQZJh/view)
-2. Registration Page: [Link to Screenshot](https://drive.google.com/drive/u/0/folders/1_pdarLT1mTSNElgAf_cjWKkRxEwgJayP)
-3. Task List Page: [Link to Screenshot](https://drive.google.com/file/d/1BPJInh1T1Jrwb-cuUxiwp8u2pd6aYH3u/view)
-4. Add Task Page: [Link to Screenshot](https://drive.google.com/file/d/1No8UtaMKEen9-NtRcFhsCTr33GKAfwq9/view)
-5. Edit Task Page: [Link to Screenshot](https://drive.google.com/file/d/1yPzyMIpxUVkZF4REYbK7Vq1EpRyvNs-f/view)
-6. Delete Task Confirmation Page: [Link to Screenshot](https://drive.google.com/drive/u/0/folders/1_pdarLT1mTSNElgAf_cjWKkRxEwgJayP)
+1. Login Page: [Link to Screenshot]
+2. Registration Page: [Link to Screenshot]
+3. Task List Page: [Link to Screenshot]
+4. Add Task Page: [Link to Screenshot]
+5. Edit Task Page: [Link to Screenshot]
+6. Delete Task Confirmation Page: [Link to Screenshot]
 
-7. Additional Pages...
-   - [Additional Page 1](https://drive.google.com/file/d/1kRQGTqOr82jM5EKdazyQnqsVu5ST68zd/view?usp=sharing)
-   - [Additional Page 2](https://drive.google.com/file/d/1loExdC5acJxryWkFHnmC2JHgx3EFTRXT/view?usp=sharing)
-   - [Additional Page 3](https://drive.google.com/file/d/1nVgkYqAGQZMpfVarUa_BHuMysDZIABwC/view?usp=sharing)
-   - [Additional Page 4](https://drive.google.com/file/d/1odKYnx1I83NEhy-AytQ5D_C1WmOd7om8/view?usp=sharing)
-   - [Additional Page 5](https://drive.google.com/file/d/1x5QoUr8mVdB0Ut7-sBF00TPuZt7Ol2bw/view?usp=sharing)
+
 
 ## How to Run
 
